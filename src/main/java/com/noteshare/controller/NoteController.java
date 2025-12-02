@@ -2,9 +2,9 @@ package com.noteshare.controller;
 
 import com.noteshare.dto.ApiResponse;
 import com.noteshare.dto.NoteResponse;
-import com.noteshare.dto.NoteUploadRequest;
 import com.noteshare.entity.Note;
 import com.noteshare.entity.User;
+import com.noteshare.repository.NoteRepository;
 import com.noteshare.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -28,6 +29,9 @@ public class NoteController {
 
     @Autowired
     private NoteService noteService;
+
+    @Autowired
+    private NoteRepository noteRepository;
 
     @PostMapping("/upload")
     public ApiResponse uploadNote(
@@ -81,7 +85,7 @@ public class NoteController {
                 return ApiResponse.error("请先登录");
             }
 
-            List<NoteResponse> notes = noteService.getNotesByUser(user.getId());
+            List<NoteResponse> notes = noteService.getNotesByUserWithDeletable(user.getId(), user.getId());
             return ApiResponse.success("获取我的笔记成功", notes);
         } catch (Exception e) {
             return ApiResponse.error("获取我的笔记失败: " + e.getMessage());
@@ -109,6 +113,44 @@ public class NoteController {
             }
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ApiResponse deleteNote(@PathVariable Long id, HttpSession session) {
+        try {
+            User user = (User) session.getAttribute("user");
+            if (user == null) {
+                return ApiResponse.error("请先登录");
+            }
+
+            // 获取笔记
+            Note note = noteService.getNoteById(id);
+
+            // 权限检查：只能删除自己的笔记
+            if (!note.getUser().getId().equals(user.getId())) {
+                return ApiResponse.error("无权删除此笔记");
+            }
+
+            // 删除文件
+            try {
+                Path filePath = Paths.get(note.getFilePath());
+                Files.deleteIfExists(filePath);
+                System.out.println("删除文件成功: " + filePath);
+            } catch (IOException e) {
+                System.out.println("删除文件失败: " + e.getMessage());
+                // 记录日志但不阻止删除数据库记录
+            }
+
+            // 删除数据库记录
+            noteRepository.delete(note);
+
+            return ApiResponse.success("删除笔记成功");
+
+        } catch (RuntimeException e) {
+            return ApiResponse.error(e.getMessage());
+        } catch (Exception e) {
+            return ApiResponse.error("删除笔记失败: " + e.getMessage());
         }
     }
 }

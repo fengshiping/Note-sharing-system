@@ -15,7 +15,11 @@ public class NoteResponse {
     private LocalDateTime createdTime;
     private String courseName;
     private String uploaderName;
+    private Long uploaderId; // 新增：上传者ID
 
     // 文件下载URL
     private String downloadUrl;
+
+    // 是否可以删除（前端根据当前用户判断）
+    private boolean deletable;
 }

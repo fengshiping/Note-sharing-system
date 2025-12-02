@@ -1,0 +1,98 @@
+2025-12-01 18:43:52 [main] INFO  com.noteshare.NoteShareApplication - Starting NoteShareApplication using Java 11.0.22 on DESKTOP-R5VU3NC with PID 18464 (D:\note-sharing-system\target\classes started by WIN10 in D:\note-sharing-system)
+2025-12-01 18:43:52 [main] DEBUG com.noteshare.NoteShareApplication - Running with Spring Boot v2.7.18, Spring v5.3.31
+2025-12-01 18:43:52 [main] INFO  com.noteshare.NoteShareApplication - No active profile set, falling back to 1 default profile: "default"
+2025-12-01 18:43:52 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-01 18:43:52 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 48 ms. Found 3 JPA repository interfaces.
+2025-12-01 18:43:53 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-12-01 18:43:53 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-12-01 18:43:53 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.83]
+2025-12-01 18:43:53 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-12-01 18:43:53 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1322 ms
+2025-12-01 18:43:53 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-01 18:43:53 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+2025-12-01 18:43:53 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-12-01 18:43:53 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-12-01 18:43:54 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-12-01 18:43:54 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2025-12-01 18:43:54 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-12-01 18:43:54 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-01 18:43:55 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2025-12-01 18:43:55 [main] INFO  com.noteshare.NoteShareApplication - Started NoteShareApplication in 3.843 seconds (JVM running for 5.009)
+2025-12-01 18:44:13 [http-nio-0.0.0.0-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-01 18:44:13 [http-nio-0.0.0.0-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-12-01 18:44:13 [http-nio-0.0.0.0-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-12-01 18:44:13 [http-nio-0.0.0.0-8080-exec-1] DEBUG org.hibernate.SQL - 
+    /* select
+        generatedAlias0 
+    from
+        Note as generatedAlias0 
+    order by
+        generatedAlias0.createdTime desc */ select
+            note0_.id as id1_1_,
+            note0_.course_id as course_10_1_,
+            note0_.created_time as created_2_1_,
+            note0_.description as descript3_1_,
+            note0_.download_count as download4_1_,
+            note0_.file_name as file_nam5_1_,
+            note0_.file_path as file_pat6_1_,
+            note0_.file_size as file_siz7_1_,
+            note0_.file_type as file_typ8_1_,
+            note0_.title as title9_1_,
+            note0_.user_id as user_id11_1_ 
+        from
+            note note0_ 
+        order by
+            note0_.created_time desc
+2025-12-01 18:45:02 [http-nio-0.0.0.0-8080-exec-6] DEBUG org.hibernate.SQL - 
+    /* select
+        generatedAlias0 
+    from
+        Note as generatedAlias0 
+    order by
+        generatedAlias0.createdTime desc */ select
+            note0_.id as id1_1_,
+            note0_.course_id as course_10_1_,
+            note0_.created_time as created_2_1_,
+            note0_.description as descript3_1_,
+            note0_.download_count as download4_1_,
+            note0_.file_name as file_nam5_1_,
+            note0_.file_path as file_pat6_1_,
+            note0_.file_size as file_siz7_1_,
+            note0_.file_type as file_typ8_1_,
+            note0_.title as title9_1_,
+            note0_.user_id as user_id11_1_ 
+        from
+            note note0_ 
+        order by
+            note0_.created_time desc
+2025-12-01 18:45:03 [http-nio-0.0.0.0-8080-exec-7] DEBUG org.hibernate.SQL - 
+    /* select
+        generatedAlias0 
+    from
+        Note as generatedAlias0 
+    order by
+        generatedAlias0.createdTime desc */ select
+            note0_.id as id1_1_,
+            note0_.course_id as course_10_1_,
+            note0_.created_time as created_2_1_,
+            note0_.description as descript3_1_,
+            note0_.download_count as download4_1_,
+            note0_.file_name as file_nam5_1_,
+            note0_.file_path as file_pat6_1_,
+            note0_.file_size as file_siz7_1_,
+            note0_.file_type as file_typ8_1_,
+            note0_.title as title9_1_,
+            note0_.user_id as user_id11_1_ 
+        from
+            note note0_ 
+        order by
+            note0_.created_time desc
+2025-12-01 18:48:44 [http-nio-0.0.0.0-8080-exec-3] WARN  o.s.web.servlet.PageNotFound - No mapping for GET /api/health
+2025-12-01 18:48:44 [http-nio-0.0.0.0-8080-exec-3] WARN  o.s.web.servlet.PageNotFound - No handler found for GET /api/health
+2025-12-01 18:48:44 [http-nio-0.0.0.0-8080-exec-3] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /api/health]
+2025-12-01 18:48:44 [http-nio-0.0.0.0-8080-exec-4] WARN  o.s.web.servlet.PageNotFound - No mapping for GET /favicon.ico
+2025-12-01 18:48:44 [http-nio-0.0.0.0-8080-exec-4] WARN  o.s.web.servlet.PageNotFound - No handler found for GET /favicon.ico
+2025-12-01 18:48:44 [http-nio-0.0.0.0-8080-exec-4] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+2025-12-01 18:49:03 [http-nio-0.0.0.0-8080-exec-5] WARN  o.s.web.servlet.PageNotFound - No mapping for GET /api/auth/test
+2025-12-01 18:49:03 [http-nio-0.0.0.0-8080-exec-5] WARN  o.s.web.servlet.PageNotFound - No handler found for GET /api/auth/test
+2025-12-01 18:49:03 [http-nio-0.0.0.0-8080-exec-5] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /api/auth/test]

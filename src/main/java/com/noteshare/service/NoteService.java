@@ -100,6 +100,11 @@ public class NoteService {
         return notes.stream().map(this::convertToResponse).collect(Collectors.toList());
     }
 
+    public List<NoteResponse> getNotesByUserWithDeletable(Long userId, Long currentUserId) {
+        List<Note> notes = noteRepository.findByUserIdOrderByCreatedTimeDesc(userId);
+        return notes.stream().map(note -> convertToResponseWithUser(note, currentUserId)).collect(Collectors.toList());
+    }
+
     public Note getNoteById(Long id) {
         return noteRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("笔记不存在"));
@@ -123,7 +128,16 @@ public class NoteService {
         response.setCreatedTime(note.getCreatedTime());
         response.setCourseName(note.getCourse().getName());
         response.setUploaderName(note.getUser().getUsername());
+        response.setUploaderId(note.getUser().getId());
         response.setDownloadUrl("/api/notes/" + note.getId() + "/download");
+        response.setDeletable(false); // 默认false，前端需要根据当前用户判断
+        return response;
+    }
+
+    private NoteResponse convertToResponseWithUser(Note note, Long currentUserId) {
+        NoteResponse response = convertToResponse(note);
+        // 如果可以删除：当前用户是笔记上传者
+        response.setDeletable(note.getUser().getId().equals(currentUserId));
         return response;
     }
 
