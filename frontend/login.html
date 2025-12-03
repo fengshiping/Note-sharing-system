@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录 - 笔记共享系统</title>
+    <!-- 引入Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 引入我们自己的样式 -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">📚 笔记共享系统</a>
+        </div>
+    </nav>
+
+    <!-- 登录表单 -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card mt-5">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="text-center mb-0">用户登录</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <form id="loginForm">
+                            <!-- 用户名输入 -->
+                            <div class="mb-3">
+                                <label for="username" class="form-label">用户名</label>
+                                <input type="text" class="form-control" id="username" name="username" 
+                                       placeholder="请输入用户名" required>
+                            </div>
+                            
+                            <!-- 密码输入 -->
+                            <div class="mb-3">
+                                <label for="password" class="form-label">密码</label>
+                                <input type="password" class="form-control" id="password" name="password" 
+                                       placeholder="请输入密码" required>
+                            </div>
+                            
+                            <!-- 登录按钮 -->
+                            <button type="submit" class="btn btn-primary w-100 btn-lg">登录</button>
+                        </form>
+                        
+                        <!-- 注册链接 -->
+                        <div class="text-center mt-4">
+                            <p>还没有账号？ <a href="register.html" class="text-decoration-none">立即注册</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入JavaScript文件 -->
+    <script src="js/auth.js"></script>
+</body>
+</html>
