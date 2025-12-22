@@ -156,4 +156,11 @@ public class NoteService {
         }
         return false;
     }
+
+    // 在 NoteService.java 中添加以下方法
+    public List<NoteResponse> searchNotesByTitle(String keyword) {
+        List<Note> notes = noteRepository.findByTitleContainingIgnoreCaseOrderByCreatedTimeDesc(keyword);
+        return notes.stream().map(this::convertToResponse).collect(Collectors.toList());
+    }
+
 }

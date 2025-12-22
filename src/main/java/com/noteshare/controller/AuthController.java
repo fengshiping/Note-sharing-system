@@ -8,6 +8,7 @@ import com.noteshare.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +20,25 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 测试接口 - 用于检查后端服务是否正常运行
+     */
+    @GetMapping("/test")
+    public ApiResponse test() {
+        try {
+            Map<String, Object> data = new HashMap<>();
+            data.put("message", "✅ 后端服务正常运行");
+            data.put("timestamp", new Date().toString());
+            data.put("status", "active");
+            return ApiResponse.success("服务正常", data);
+        } catch (Exception e) {
+            return ApiResponse.error("测试接口异常: " + e.getMessage());
+        }
+    }
+
+    /**
+     * 注册接口
+     */
     @PostMapping("/register")
     public ApiResponse register(@RequestBody RegisterRequest request, HttpSession session) {
         try {
@@ -50,6 +70,9 @@ public class AuthController {
         }
     }
 
+    /**
+     * 登录接口
+     */
     @PostMapping("/login")
     public ApiResponse login(@RequestBody LoginRequest request, HttpSession session) {
         try {
@@ -68,12 +91,18 @@ public class AuthController {
         }
     }
 
+    /**
+     * 退出登录接口
+     */
     @PostMapping("/logout")
     public ApiResponse logout(HttpSession session) {
         session.invalidate();
         return ApiResponse.success("退出成功");
     }
 
+    /**
+     * 检查登录状态接口
+     */
     @GetMapping("/check")
     public ApiResponse checkLogin(HttpSession session) {
         User user = (User) session.getAttribute("user");

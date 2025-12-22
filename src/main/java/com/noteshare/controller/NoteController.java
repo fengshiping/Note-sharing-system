@@ -92,6 +92,32 @@ public class NoteController {
         }
     }
 
+    @GetMapping("/search")
+    public ApiResponse searchNotes(@RequestParam String keyword, HttpSession session) {
+        try {
+            if (keyword == null || keyword.trim().isEmpty()) {
+                return ApiResponse.error("请输入搜索关键词");
+            }
+
+            // 可选：检查用户是否登录，如果需要登录才能搜索则开启下面的代码
+            /*
+            User user = (User) session.getAttribute("user");
+            if (user == null) {
+                return ApiResponse.error("请先登录");
+            }
+            */
+
+            List<NoteResponse> notes = noteService.searchNotesByTitle(keyword);
+            if (notes.isEmpty()) {
+                return ApiResponse.success("未找到相关笔记", notes);
+            }
+            return ApiResponse.success("搜索成功", notes);
+
+        } catch (Exception e) {
+            return ApiResponse.error("搜索失败: " + e.getMessage());
+        }
+    }
+
     @GetMapping("/{id}/download")
     public ResponseEntity<Resource> downloadNote(@PathVariable Long id) {
         try {
